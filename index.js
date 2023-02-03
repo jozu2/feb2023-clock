@@ -1,6 +1,9 @@
 const hourHand = document.querySelector("[data-hour-hand]");
 const minuteHand = document.querySelector("[data-minute-hand]");
 const secondHand = document.querySelector("[data-second-hand]");
+const toggle = document.querySelector(".toggle");
+const containerClock = document.querySelector(".clock-container");
+const clock = document.querySelector(".clock");
 
 setInterval(setClock, 1000);
 
@@ -20,3 +23,9 @@ function setRotation(element, rotationRatio) {
 }
 
 setClock();
+
+toggle.addEventListener("click", () => {
+  toggle.classList.toggle("active");
+  clock.classList.toggle("active");
+  containerClock.classList.toggle("active");
+});

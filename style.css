@@ -4,12 +4,22 @@
   box-sizing: border-box;
 }
 body {
-  background-color: rgb(14, 11, 20);
+  margin: 0;
+  padding: 0;
+}
+
+.clock-container {
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   overflow: hidden;
+  transition: 0.3s;
+}
+.clock-container.active {
+  background-color: rgb(14, 11, 20);
+  transition: 0.3s;
 }
 
 .clock {
@@ -17,24 +27,31 @@ body {
   height: 500px;
   border-radius: 50%;
   position: relative;
-  border: solid 4px rgb(14, 11, 20);
   box-shadow: 0 -15px 15px rgb(255, 255, 255, 0.05),
     inset 0 -15px 15px rgb(255, 255, 255, 0.05),
     0 15px 15px rgb(255, 255, 255, 0.05),
     inset 0 -15px 18px rgb(255, 255, 255, 0.05);
 }
 
+.clock.active {
+  border: solid 4px rgb(14, 11, 20);
+  transition: 1s;
+}
+
 .clock::after {
   content: "";
   position: absolute;
-  width: 15px;
-  height: 15px;
-  background-color: rgb(44, 36, 61);
+  width: 20px;
+  height: 20px;
   top: 50%;
   left: 50%;
   z-index: 11;
   transform: translate(-50%, -50%);
   border-radius: 50%;
+  background-color: black;
+}
+.clock.active::after {
+  background-color: rgb(44, 36, 61);
 }
 
 .clock .number {
@@ -46,6 +63,8 @@ body {
   transform: rotate(var(--rotation));
   font-size: 2em;
   padding-top: 1.7rem;
+}
+.clock.active .number {
   color: rgb(116, 116, 116);
 }
 
@@ -99,6 +118,9 @@ body {
 .clock .hand.second {
   width: 0.25em;
   height: 45%;
+  background-color: rgb(255, 0, 0);
+}
+.clock.active .hand.second {
   background-color: rgb(88, 46, 46);
 }
 
@@ -106,6 +128,9 @@ body {
   --rotation: 10;
   width: 0.55em;
   height: 30%;
+  background-color: rgb(0, 0, 0);
+}
+.clock.active .hand.hour {
   background-color: rgb(116, 116, 116);
 }
 
@@ -113,5 +138,50 @@ body {
   --rotation: 50;
   width: 0.45em;
   height: 40%;
+
+  background-color: rgb(0, 0, 0);
+}
+.clock.active .hand.minute {
   background-color: rgb(116, 116, 116);
+}
+
+.menu {
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  top: 5%;
+}
+
+.menu .toggle-container {
+}
+
+.menu .toggle-container .toggle {
+  position: relative;
+  background-color: black;
+  width: 3.66em;
+  height: 2em;
+  border-radius: 50px;
+  top: 50%;
+  cursor: pointer;
+  transition: 0.53s;
+}
+
+.menu .toggle-container .toggle .toggle-btn {
+  position: absolute;
+  width: 1.55em;
+  height: 1.55em;
+  background-color: white;
+  border-radius: 50%;
+  top: 3.5px;
+  left: 3.5px;
+  transition: 0.53s;
+}
+
+.menu .toggle-container .toggle.active {
+  background-color: rgb(177, 177, 177);
+}
+
+.menu .toggle-container .toggle.active .toggle-btn {
+  background-color: rgb(14, 11, 20);
+  left: 32px;
 }
